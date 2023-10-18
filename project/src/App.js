@@ -5,8 +5,8 @@ import Registration from './Component/Registration/Registration';
 import UserMainPage from './Component/User/UserMainPage';
 import PrivateUserRoute from './Component/PrivateRoutes/PrivateUserRoute';
 import PrivateLogInRoute from './Component/PrivateRoutes/PrivateLogInRoute';
-import Header from './Component/Common/Header';
 import Rout from './Component/User/Rout';
+import Profile from './Component/User/Profile/Profile';
 
 function App() {
   return (
@@ -32,6 +32,11 @@ function App() {
           <Route path="/user" element={
             <PrivateUserRoute>
               <UserMainPage />
+            </PrivateUserRoute>
+          } />
+          <Route path="/profile" element={
+            <PrivateUserRoute>
+              <Profile />
             </PrivateUserRoute>
           } />
         </Route>

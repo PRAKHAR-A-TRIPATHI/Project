@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import ItemsWrapper from './ItemsWrapper';
 
 const URL_ITEMs = 'http://localhost:3500/items/'
@@ -9,14 +9,14 @@ const UserMainPage = () => {
         getItemsFromApi()
     }, []);
 
-    async function getItemsFromApi(itemId='') {
+    async function getItemsFromApi(itemId = '') {
         try {
-            let response = await fetch(URL_ITEMs+itemId)
+            let response = await fetch(URL_ITEMs + itemId)
             if (response.ok) {
                 let data = await response.json();
                 setItemsFromApi(data)
             }
-            else{
+            else {
                 throw new Error('Can not fetch data')
             }
         } catch (error) {
@@ -25,8 +25,7 @@ const UserMainPage = () => {
     }
     return (
         <>
-        <h1 className='text-white'>USER PAGE</h1>
-        <ItemsWrapper itemsFromApi={itemsFromApi}/>
+            <ItemsWrapper itemsFromApi={itemsFromApi} />
         </>
     )
 }

@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import CartComponent from './CartComponent';
 
 function Header() {
-    function removeUser (){
+    const [cartCom,setCartCom] = useState(false)
+    function removeUser() {
         localStorage.removeItem('token')
     }
     return (
@@ -18,23 +20,6 @@ function Header() {
                                 alt="Logo"
                             /> */}
                         </Link>
-                        <div className="flex items-center lg:order-2">
-                            <NavLink
-                                to="/login"
-                                className={({ isActive }) =>
-                                    `"text-white  hover:bg-red-500 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none ${isActive ? "text-orange-700" : "text-gray-700"} `
-                                }
-                                onClick={removeUser}
-                            >
-                                LogOut
-                            </NavLink>
-                            <Link
-                                to="#"
-                                className="text-white bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
-                            >
-                                <span className='flex text-lg'><AiOutlineShoppingCart className=' text-3xl'/>cart</span>
-                            </Link>
-                        </div>
                         <div
                             className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
                             id="mobile-menu-2"
@@ -83,9 +68,29 @@ function Header() {
 
                             </ul>
                         </div>
+                        <div className="flex items-center lg:order-2">
+                            <NavLink
+                                to="/login"
+                                className={({ isActive }) =>
+                                    `"text-white  hover:bg-red-500 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none ${isActive ? "text-orange-700" : "text-gray-700"} `
+                                }
+                                onClick={removeUser}
+                            >
+                                LogOut
+                            </NavLink>
+                            <NavLink
+                                to="#"
+                                className="text-white bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
+                                onClick={()=>setCartCom(true)}
+                            >
+                                <span className='flex text-lg'><AiOutlineShoppingCart className=' text-3xl' />cart</span>
+                            </NavLink>
+                        </div>
+
                     </div>
                 </nav>
             </header>
+           {cartCom && <CartComponent setCartCom={setCartCom}/>}
         </div>
     )
 }

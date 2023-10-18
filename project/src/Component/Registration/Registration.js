@@ -41,7 +41,7 @@ const Registration = () => {
             validationSchema={validate}>
             {props => (
                 <div className='w-1/2 bg-white m-auto border-black rounded-2xl p-10 fixed top-1/2 left-1/2 -translate-y-2/4 -translate-x-2/4 border-2 shadow-2xl'>
-                    <form onSubmit={props.handleSubmit} action="">
+                    <form onSubmit={props.handleSubmit} >
                         <div className='flex justify-between gap-4'>
                             <InputCommonComponent name="fname" data={props} type="text" placeholder="Enter Your First Name" />
                             <InputCommonComponent name="lname" data={props} type="text" placeholder="Enter Your Last Name" />

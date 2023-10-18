@@ -10,11 +10,8 @@ const LogIn = () => {
         try {
             let res = await fetch(`https://api-qllj.onrender.com/user`);
             let result = await res.json();
-            console.log(result.data);
+            // console.log(result.data);
             let a = result.data.find(ele => ele.email === values.email && ele.password === values.password);
-
-            localStorage.setItem("token",JSON.stringify(values.email));
-            navigate("/user");
 
             if (a) {
                 localStorage.setItem("token", JSON.stringify(values.email));

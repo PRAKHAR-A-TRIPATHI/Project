@@ -12,6 +12,10 @@ const LogIn = () => {
             let result = await res.json();
             console.log(result.data);
             let a = result.data.find(ele => ele.email === values.email && ele.password === values.password);
+
+            localStorage.setItem("token",JSON.stringify(values.email));
+            navigate("/user");
+
             if (a) {
                 localStorage.setItem("token", JSON.stringify(values.email));
                 navigate("/user");

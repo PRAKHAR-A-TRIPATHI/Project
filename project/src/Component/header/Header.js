@@ -6,7 +6,7 @@ import CartComponent from './CartComponent';
 function Header() {
     const [cartCom,setCartCom] = useState(false)
     function removeUser() {
-        let a = window.confirm("yre you Sure");
+        let a = window.confirm("are you Sure");
         if(a){
             localStorage.removeItem('token')
         }

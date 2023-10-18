@@ -8,8 +8,6 @@ const Registration = () => {
     const navigate = useNavigate();
 
     const handleSubmit = async (values, action) => {
-        // localStorage.setItem("token", JSON.stringify(values));
-        // navigate("/user");
         try {
             delete values.confirmPassword;
             let res = await fetch("https://api-qllj.onrender.com/user", {
@@ -21,8 +19,8 @@ const Registration = () => {
             });
             let result = await res.json();
             console.log(result);
-            localStorage.setItem("token", JSON.stringify(values.email));
-            navigate("/user");
+            // localStorage.setItem("token", JSON.stringify(values.email));
+            // navigate("/user");
         } catch (error) {
             console.log("ERROR: " + error)
         }

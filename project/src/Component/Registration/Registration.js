@@ -7,9 +7,20 @@ import * as Yup from "yup";
 const Registration = () => {
     const navigate = useNavigate();
 
-    const handleSubmit = (values, action) => {
+    const handleSubmit = async (values, action) => {
         localStorage.setItem("token",JSON.stringify(values));
         navigate("/user");
+        try {
+            let res = await fetch("API",{
+                method: "POST",
+                headers:{
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(values)
+            });
+        } catch (error) {
+            console.log("ERROR: " + error)
+        }
     }
 
     const validate = Yup.object({

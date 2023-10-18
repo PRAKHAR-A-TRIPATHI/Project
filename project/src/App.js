@@ -6,17 +6,17 @@ import UserMainPage from './Component/User/UserMainPage';
 import PrivateUserRoute from './Component/PrivateRoutes/PrivateUserRoute';
 import PrivateLogInRoute from './Component/PrivateRoutes/PrivateLogInRoute';
 import Header from './Component/Header';
+import Rout from './Rout';
 
 function App() {
   return (
     <BrowserRouter>
-      <Header />
       <Routes>
-        {/* <Route index element={
+        <Route index element={
           <PrivateLogInRoute>
             <LogIn />
           </PrivateLogInRoute>
-        } /> */}
+        } />
         <Route path="/login" element={
           <PrivateLogInRoute>
             <LogIn />
@@ -27,11 +27,14 @@ function App() {
             <Registration />
           </PrivateLogInRoute>
         } />
-        <Route path="/user" element={
-          <PrivateUserRoute>
-            <UserMainPage />
-          </PrivateUserRoute>
-        } />
+
+        <Route path="/" element={<Rout/>} >
+          <Route path="/user" element={
+            <PrivateUserRoute>
+              <UserMainPage />
+            </PrivateUserRoute>
+          } />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

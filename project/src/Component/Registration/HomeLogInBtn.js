@@ -9,4 +9,4 @@ const HomeLogInBtn = () => {
     )
 }
 
-export default HomeLogInBtn
+export default HomeLogInBtn;

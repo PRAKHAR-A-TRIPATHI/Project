@@ -1,12 +1,14 @@
 import { Formik } from 'formik';
 import React from 'react'
 import InputCommonComponent from '../Common/InputCommonComponent';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const LogIn = () => {
+    const navigate = useNavigate();
 
     const handleSubmit = (values, action) => {
-        console.log(values);
+        localStorage.setItem("token",JSON.stringify(values));
+        navigate("/user");
     }
 
 

@@ -14,8 +14,6 @@ const LogIn = () => {
             let a = result.data.find(ele => ele.email === values.email && ele.password === values.password);
             localStorage.setItem("token",JSON.stringify(values.email));
             navigate("/user");
-            // console.log(values)
-            // console.log(a);
         } catch (error) {
             console.log("ERROR: " + error)
         }

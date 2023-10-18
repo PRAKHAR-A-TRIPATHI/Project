@@ -5,8 +5,8 @@ import Registration from './Component/Registration/Registration';
 import UserMainPage from './Component/User/UserMainPage';
 import PrivateUserRoute from './Component/PrivateRoutes/PrivateUserRoute';
 import PrivateLogInRoute from './Component/PrivateRoutes/PrivateLogInRoute';
-import Header from './Component/Header';
-import Rout from './Rout';
+import Header from './Component/Common/Header';
+import Rout from './Component/User/Rout';
 
 function App() {
   return (

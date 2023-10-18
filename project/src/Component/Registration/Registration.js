@@ -1,24 +1,28 @@
 import { Formik } from 'formik';
 import React from 'react'
 import InputCommonComponent from '../Common/InputCommonComponent';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import * as Yup from "yup";
 
 const Registration = () => {
+    const navigate = useNavigate();
 
     const handleSubmit = (values, action) => {
-        console.log(values);
+        localStorage.setItem("token",JSON.stringify(values));
+        navigate("/user");
     }
+
     const validate = Yup.object({
         fname: Yup.string().trim().min(3, "Atleast 3 character").required("Required"),
         lname: Yup.string().trim().min(3, "Atleast 3 character").required("Required"),
         email: Yup.string().trim().email("Invalid Email").required("Required"),
         password: Yup.string().trim().matches(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@#$%^&*+=!])(?!.*\s).{8,}$/, "Enter Atleast One Uppercase,Lowercase,Special Character,Number").required("Required"),
+        confirmPassword: Yup.string().oneOf([Yup.ref('password')], 'Password Not Match').required("Required"),
     });
 
     return (
         <Formik
-            initialValues={{ email: "", password: "" }}
+            initialValues={{ fname: "", lname: "", email: "", password: "", confirmPassword: "" }}
             onSubmit={handleSubmit}
             validationSchema={validate}>
             {props => (

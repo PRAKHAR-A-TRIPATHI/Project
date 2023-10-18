@@ -1,25 +1,25 @@
 import React from 'react'
 import { Formik } from 'formik'
 
-function ItemsWrapper({itemsFromApi}) {
-    function handleClickOnItem(e) {
-        console.log(e)
-    }
+function ItemsWrapper({ itemsFromApi }) {
+  function handleClickOnItem(e) {
+    console.log(e)
+  }
   return (
     <div className='bg-blue-300 flex flex-wrap gap-4 p-5'>
-        {
-            itemsFromApi.map((item,index)=>(
-                <div key={index+1} onClick={(e)=>{handleClickOnItem(e)}} className="item-wraper transition-all shadow-md bg-white w-fit p-5 rounded-md cursor-pointer">
-                    <div className="img-of-item ">
-                        <img className='' src={item.src}/>
-                    </div>
-                    <div className="item-content pt-3">
-                        <h1>Name :- {item.name}</h1>
-                        <h1>Prices :- {item.prices.join(' / ')} (Rs.)</h1>
-                    </div>
-                </div>
-            ))
-        }
+      {
+        itemsFromApi.map((item, index) => (
+          <div key={index + 1} onClick={(e) => { handleClickOnItem(e) }} className="item-wraper transition-all shadow-md bg-white w-fit p-5 rounded-md cursor-pointer">
+            <div className="img-of-item ">
+              <img className='' src={item.src} />
+            </div>
+            <div className="item-content pt-3">
+              <h1>Name :- {item.name}</h1>
+              <h1>Prices :- {item.prices.join(' / ')} (Rs.)</h1>
+            </div>
+          </div>
+        ))
+      }
     </div>
   )
 }

@@ -6,9 +6,19 @@ import { Link, useNavigate } from 'react-router-dom';
 const LogIn = () => {
     const navigate = useNavigate();
 
-    const handleSubmit = (values, action) => {
-        localStorage.setItem("token",JSON.stringify(values));
-        navigate("/user");
+    const handleSubmit = async (values, action) => {
+        try {
+            let res = await fetch(`https://api-qllj.onrender.com/user`);
+            let result = await res.json();
+            console.log(result.data);
+            let a = result.data.find(ele => ele.email === values.email && ele.password === values.password);
+            localStorage.setItem("token",JSON.stringify(values.email));
+            navigate("/user");
+            // console.log(values)
+            // console.log(a);
+        } catch (error) {
+            console.log("ERROR: " + error)
+        }
     }
 
 

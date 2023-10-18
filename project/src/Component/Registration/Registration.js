@@ -8,19 +8,24 @@ const Registration = () => {
     const navigate = useNavigate();
 
     const handleSubmit = async (values, action) => {
-        localStorage.setItem("token",JSON.stringify(values));
-        navigate("/user");
-        // try {
-        //     let res = await fetch("API",{
-        //         method: "POST",
-        //         headers:{
-        //             "Content-Type": "application/json"
-        //         },
-        //         body: JSON.stringify(values)
-        //     });
-        // } catch (error) {
-        //     console.log("ERROR: " + error)
-        // }
+        // localStorage.setItem("token", JSON.stringify(values));
+        // navigate("/user");
+        try {
+            delete values.confirmPassword;
+            let res = await fetch("https://api-qllj.onrender.com/user", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(values)
+            });
+            let result = await res.json();
+            console.log(result);
+            localStorage.setItem("token", JSON.stringify(values.email));
+            navigate("/user");
+        } catch (error) {
+            console.log("ERROR: " + error)
+        }
     }
 
     const validate = Yup.object({
@@ -33,7 +38,7 @@ const Registration = () => {
 
     return (
         <Formik
-            initialValues={{ fname: "", lname: "", email: "", password: "", confirmPassword: "" }}
+            initialValues={{ fname: "", lname: "", email: "", password: "", confirmPassword: "", role: "user" }}
             onSubmit={handleSubmit}
             validationSchema={validate}>
             {props => (
@@ -47,7 +52,7 @@ const Registration = () => {
                         <InputCommonComponent name="password" data={props} type="password" placeholder="Enter Your Password" />
                         <InputCommonComponent name="confirmPassword" data={props} type="password" placeholder="Confirm Password" />
                         <div className='text-center'>
-                            <button className='bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-xl text-xl transition duration-200' type='submit'>Log In</button>
+                            <button className='bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-xl text-xl transition duration-200' type='submit'>Register</button>
                             <div className='my-2'>
                                 <p className='text-lg'>Already Register <Link className='underline' to="/login">Log In</Link></p>
                             </div>

@@ -29,7 +29,7 @@ function App() {
           </PrivateLogInRoute>
         } />
 
-        <Route path="/" element={<Rout/>} >
+        <Route path="/" element={<Rout />} >
           <Route path="/user" element={
             <PrivateUserRoute>
               <UserMainPage />

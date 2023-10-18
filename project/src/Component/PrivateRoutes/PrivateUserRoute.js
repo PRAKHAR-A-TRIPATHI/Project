@@ -6,10 +6,10 @@ const PrivateUserRoute = ({ children }) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        let token =  localStorage.getItem("token");
+        let token = localStorage.getItem("token");
         if (!token) {
             navigate("/logIn")
-        }else{
+        } else {
             setToken(token);
         }
     }, [])
@@ -19,4 +19,4 @@ const PrivateUserRoute = ({ children }) => {
     )
 }
 
-export default PrivateUserRoute
+export default PrivateUserRoute;

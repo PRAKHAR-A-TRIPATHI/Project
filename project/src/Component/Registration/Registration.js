@@ -1,8 +1,8 @@
 import { Formik } from 'formik';
 import React, { useState } from 'react'
 import InputCommonComponent from '../Common/InputCommonComponent';
-import { Link, useNavigate } from 'react-router-dom';
-import * as Yup from "yup";
+import { Link, useNavigate } from 'react-router-dom';   
+import { signUpSchema } from './Validate';
 
 const Registration = () => {
     const [stopApi, setStopApi] = useState(true)
@@ -27,13 +27,6 @@ const Registration = () => {
         }
     }
 
-    const validate = Yup.object({
-        fname: Yup.string().trim().min(3, "Atleast 3 character").required("Required"),
-        lname: Yup.string().trim().min(3, "Atleast 3 character").required("Required"),
-        email: Yup.string().trim().email("Invalid Email").required("Required"),
-        password: Yup.string().trim().matches(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@#$%^&*+=!])(?!.*\s).{8,}$/, "Enter Atleast One Uppercase,Lowercase,Special Character,Number").required("Required"),
-        confirmPassword: Yup.string().oneOf([Yup.ref('password')], 'Password Not Match').required("Required"),
-    });
 
     return (
         <Formik
@@ -44,7 +37,7 @@ const Registration = () => {
                     setStopApi(false)
                 }
             }}
-            validationSchema={validate}
+            validationSchema={signUpSchema}
         >
             {props => (
                 <div className='w-1/2 bg-white m-auto border-black rounded-2xl p-10 fixed top-1/2 left-1/2 -translate-y-2/4 -translate-x-2/4 border-2 shadow-2xl'>

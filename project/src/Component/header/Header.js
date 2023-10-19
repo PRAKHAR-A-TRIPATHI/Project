@@ -71,7 +71,7 @@ function Header() {
 
                             </ul>
                         </div>
-                        <div className="flex items-center lg:order-2">
+                        <div className="flex items-center justify-between lg:order-2">
                             <NavLink
                                 to="/login"
                                 className={({ isActive }) =>

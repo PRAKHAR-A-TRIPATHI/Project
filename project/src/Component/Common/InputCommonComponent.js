@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 const InputCommonComponent = ({ type, name, data, placeholder }) => {
     const [show, setShow] = useState(false);

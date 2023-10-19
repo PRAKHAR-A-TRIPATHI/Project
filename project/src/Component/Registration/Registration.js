@@ -1,10 +1,11 @@
 import { Formik } from 'formik';
-import React from 'react'
+import React, { useState } from 'react'
 import InputCommonComponent from '../Common/InputCommonComponent';
 import { Link, useNavigate } from 'react-router-dom';
 import * as Yup from "yup";
 
 const Registration = () => {
+    const [stopApi, setStopApi] = useState(true)
     const navigate = useNavigate();
 
     const handleSubmit = async (values, action) => {
@@ -19,6 +20,7 @@ const Registration = () => {
             if (res.ok) {
                 localStorage.setItem("token", JSON.stringify(values.email));
                 navigate("/user");
+                setStopApi(true)
             }
         } catch (error) {
             console.log("ERROR: " + error)
@@ -36,9 +38,14 @@ const Registration = () => {
     return (
         <Formik
             initialValues={{ fname: "", lname: "", email: "", password: "", confirmPassword: "", role: "user" }}
-            onSubmit={handleSubmit}
+            onSubmit={(values) => {
+                if (stopApi) {
+                    handleSubmit(values);
+                    setStopApi(false)
+                }
+            }}
             validationSchema={validate}
-            validateOnChange={validate}>
+        >
             {props => (
                 <div className='w-1/2 bg-white m-auto border-black rounded-2xl p-10 fixed top-1/2 left-1/2 -translate-y-2/4 -translate-x-2/4 border-2 shadow-2xl'>
                     <form onSubmit={props.handleSubmit} >

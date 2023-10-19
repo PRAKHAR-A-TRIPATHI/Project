@@ -37,7 +37,8 @@ const Registration = () => {
         <Formik
             initialValues={{ fname: "", lname: "", email: "", password: "", confirmPassword: "", role: "user" }}
             onSubmit={handleSubmit}
-            validationSchema={validate}>
+            validationSchema={validate}
+            validateOnChange={validate}>
             {props => (
                 <div className='w-1/2 bg-white m-auto border-black rounded-2xl p-10 fixed top-1/2 left-1/2 -translate-y-2/4 -translate-x-2/4 border-2 shadow-2xl'>
                     <form onSubmit={props.handleSubmit} >

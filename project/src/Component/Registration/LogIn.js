@@ -1,29 +1,36 @@
 import { Formik } from 'formik';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import InputCommonComponent from '../Common/InputCommonComponent';
 import { Link, useNavigate } from 'react-router-dom';
 
 const LogIn = () => {
+    let [data,setData] = useState({})
+    let [error,setError] = useState(false)
     const navigate = useNavigate();
 
+   async function fetchData() {
+    try{
+        let response = await fetch('https://api-qllj.onrender.com/user')
+        let result = await response.json();
+        setData(result.data)
+    }catch (error){
+        console.log(error)
+    }
+   }
+   useEffect(()=>{
+        fetchData();
+   },[])
+//    console.log(data)
     const handleSubmit = async (values, action) => {
-        try {
-            let res = await fetch(`https://api-qllj.onrender.com/user`);
-            let result = await res.json();
-            // console.log(result.data);
-            let a = result.data.find(ele => ele.email === values.email && ele.password === values.password);
-
-            if (a) {
-                localStorage.setItem("token", JSON.stringify(values.email));
-                navigate("/user");
-            }
-            // console.log(values)
-            // console.log(a);
-        } catch (error) {
-            console.log("ERROR: " + error)
+        let a = data.find(ele => ele.email === values.email && ele.password === values.password);
+        if (a) {
+            localStorage.setItem("token", JSON.stringify(values.email));
+            navigate("/user");
+        }else{
+            setError(true)
         }
     }
-
+  
 
     return (
         <Formik
@@ -35,6 +42,7 @@ const LogIn = () => {
                     <form onSubmit={props.handleSubmit} action="">
                         <InputCommonComponent name="email" data={props} type="email" placeholder="Enter Your Email" />
                         <InputCommonComponent name="password" data={props} type="password" placeholder="Enter Your Password" />
+                        {error&&<p className='text-red-500'>Please Enter Valid Email or Password</p>}
                         <div className='text-center'>
                             <button className='bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-xl text-xl transition duration-200' type='submit'>Log In</button>
                             <div className='my-2'>

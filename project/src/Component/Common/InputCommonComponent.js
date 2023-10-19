@@ -12,8 +12,7 @@ const InputCommonComponent = ({ type, name, data, placeholder }) => {
                 className='shadow appearance-none border rounded w-full py-2.5 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-lg'
                 value={data.values[name]}
                 onChange={data.handleChange}
-                onFocus={data.handleBlur}
-                // onBlur={data.handleBlur}
+                onBlur={data.handleBlur}
                 // onFocus={() => setIsFocus(true)}
                 // onBlur={() => data.values[name].trim() === "" ? setIsFocus(false) : false}
                 type={type === "password" ? (show ? 'text' : 'password') : type}
